@@ -1,4 +1,6 @@
 import { useState } from "react";
+import * as notesService from "../../utilities/notes-service";
+import { set } from "mongoose";
 
 export default function NotesCard() {
   const [note, setNote] = useState("");
@@ -6,12 +8,17 @@ export default function NotesCard() {
 
   function handleChange(e) {
     setNote(e.target.value);
-    setError("");
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setNote(...note, [e.target.value]);
+    try {
+      const user = await notesService.addNotes({ text: note });
+      setNote(user);
+    } catch {
+      setError("Note creation failed - Try again");
+    }
+    setNote("");
   }
 
   return (
