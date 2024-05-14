@@ -5,7 +5,7 @@ export default function NotesCard() {
   const [error, setError] = useState("");
 
   function handleChange(e) {
-    set({ ...note, [evt.target.name]: evt.target.value });
+    setNote(e.target.value);
     setError("");
   }
 
