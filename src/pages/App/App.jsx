@@ -15,11 +15,10 @@ export default function App() {
       {user ? (
         <>
           <NavBar user={user} setUser={setUser} />
-
+          <h1>Welcome, {user.name}</h1>
           <Routes>
-            {/* Route components in here */}
-            <Route path="/notes/new" element={<AddNotesPage />} />
             <Route path="/" element={<Notes />} />
+            <Route path="/notes/new" element={<AddNotesPage />} />
           </Routes>
         </>
       ) : (

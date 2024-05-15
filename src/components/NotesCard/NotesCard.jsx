@@ -1,6 +1,5 @@
 import { useState } from "react";
 import * as notesService from "../../utilities/notes-service";
-import { set } from "mongoose";
 
 export default function NotesCard() {
   const [note, setNote] = useState("");
