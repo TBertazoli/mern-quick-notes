@@ -3,6 +3,7 @@ const User = require("../../models/user");
 
 module.exports = {
   create,
+  show,
 };
 
 async function create(req, res) {
@@ -10,10 +11,18 @@ async function create(req, res) {
 
   try {
     const note = await Notes.create({ text: req.body.text, user: user });
-    console.log(note);
     user.save(note);
-
     res.json(note);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+}
+
+async function show(req, res) {
+  try {
+    const user = await User.findById(req.user._id);
+    const notes = await Notes.find({ user: user });
+    res.json(notes);
   } catch (err) {
     res.status(400).json(err);
   }

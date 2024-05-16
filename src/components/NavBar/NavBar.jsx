@@ -32,6 +32,11 @@ export default function NavBar({ user, setUser }) {
             </Link>
           </li>
           <li className="nav-item">
+            <Link className="nav-link" to="/notes/new">
+              ADD NOTES
+            </Link>
+          </li>
+          <li className="nav-item">
             <Link className="nav-link" to="" onClick={handleLogOut}>
               LOG OUT
             </Link>

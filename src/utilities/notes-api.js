@@ -6,6 +6,6 @@ export async function createNotes({ text: note }) {
   return sendRequest(BASE_URL, "POST", { text: note });
 }
 
-export async function checkToken() {
-  return sendRequest(`${BASE_URL}/check-token`);
+export async function getAllNotes() {
+  return sendRequest(BASE_URL);
 }
