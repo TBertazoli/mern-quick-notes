@@ -24,7 +24,11 @@ export default function NavBar({ user, setUser }) {
         <span className="navbar-toggler-icon"></span>
       </button>
 
-      <div className="collapse navbar-collapse" id="navbarSupportedContent">
+      <div
+        className="collapse navbar-collapse justify-content-end"
+        id="navbarSupportedContent"
+      >
+        <h3 style={{ marginRight: "60px" }}>Welcome, {user.name}</h3>
         <ul className="navbar-nav mr-auto">
           <li className="nav-item">
             <Link className="nav-link" to="/">

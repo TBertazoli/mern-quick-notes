@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as notesService from "../../utilities/notes-service";
 
 export default function AddNotesPage() {
   const [note, setNote] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   function handleChange(e) {
     setNote(e.target.value);
@@ -14,14 +16,15 @@ export default function AddNotesPage() {
     try {
       const user = await notesService.addNotes({ text: note });
       setNote(user);
+      navigate("/");
     } catch {
       setError("Note creation failed - Try again");
     }
     setNote("");
   }
   return (
-    <>
-      <h1>Add New Note</h1>
+    <div className="container mt-5">
+      <h3>Add New Note</h3>
       <div>
         <div className="form-container">
           <form autoComplete="off" onSubmit={handleSubmit}>
@@ -39,6 +42,6 @@ export default function AddNotesPage() {
         </div>
         <p className="error-message">&nbsp;{error}</p>
       </div>
-    </>
+    </div>
   );
 }

@@ -8,6 +8,7 @@ export default function NotesCard({ note }) {
         backgroundColor: "rgb(250,250,210)",
         height: "30vh",
         width: "30vw",
+        margin: "1rem",
       }}
     >
       <div className="card-body">
