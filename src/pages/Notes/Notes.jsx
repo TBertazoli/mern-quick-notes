@@ -15,11 +15,20 @@ export default function Notes() {
   }, []);
 
   return (
-    <div>
-      <h1 className="mt-5">All my Notes</h1>
-      {notes.map((note, _id) => (
-        <NotesCard note={note} key={_id} />
-      ))}
-    </div>
+    <>
+      <h2>Notes List</h2>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          borderStyle: "none",
+          justifyItems: "center",
+        }}
+      >
+        {notes.map((note, _id) => (
+          <NotesCard note={note} key={_id} />
+        ))}
+      </div>
+    </>
   );
 }
