@@ -16,19 +16,26 @@ export default function Notes() {
 
   return (
     <>
-      <h2>Notes List</h2>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          borderStyle: "none",
-          justifyItems: "center",
-        }}
-      >
-        {notes.map((note, _id) => (
-          <NotesCard note={note} key={_id} />
-        ))}
-      </div>
+      {notes.length ? (
+        <>
+          <h2 className="mt-5">Notes List</h2>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
+              borderStyle: "none",
+              justifyItems: "center",
+            }}
+          >
+            {notes.map((note, _id) => (
+              <NotesCard note={note} key={_id} />
+            ))}
+          </div>
+        </>
+      ) : (
+        <h2 className="mt-5">No Notes Yet</h2>
+      )}
     </>
   );
 }
