@@ -1,11 +1,17 @@
+import { useNavigate } from "react-router-dom";
 import * as notesService from "../../utilities/notes-service";
 
 export default function NotesCard({ note, onDelete }) {
+  const navigate = useNavigate();
   const date = new Date(note.createdAt).toLocaleString();
 
   function handleDelete() {
     notesService.deleteNotes(note._id);
     onDelete();
+  }
+
+  function handleEdit() {
+    navigate(`/notes/${note._id}`);
   }
 
   return (
@@ -23,6 +29,9 @@ export default function NotesCard({ note, onDelete }) {
         <p className="card-text">{date}</p>
         <button className="btn btn-danger" onClick={handleDelete}>
           Delete
+        </button>
+        <button className="btn btn-primary" onClick={handleEdit}>
+          Edit
         </button>
       </div>
     </div>

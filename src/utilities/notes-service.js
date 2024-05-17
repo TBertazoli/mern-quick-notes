@@ -11,3 +11,11 @@ export async function getNotes() {
 export async function deleteNotes(id) {
   return notesAPI.deleteOne(id);
 }
+
+export async function getNote(id) {
+  return notesAPI.getOne(id);
+}
+
+export async function editNotes(id, { text: note }) {
+  return notesAPI.editOne(id, { text: note });
+}

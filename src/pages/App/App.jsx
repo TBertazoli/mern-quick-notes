@@ -19,6 +19,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Notes user={user} />} />
             <Route path="/notes/new" element={<AddNotesPage />} />
+            <Route path="/notes/:id" element={<AddNotesPage />} />
           </Routes>
         </>
       ) : (

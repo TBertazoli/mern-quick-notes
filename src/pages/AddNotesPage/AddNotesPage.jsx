@@ -1,22 +1,41 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import * as notesService from "../../utilities/notes-service";
+import { set } from "mongoose";
 
 export default function AddNotesPage() {
   const [note, setNote] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const { id } = useParams();
 
   function handleChange(e) {
     setNote(e.target.value);
   }
+  useEffect(() => {
+    async function getNote() {
+      const note = await notesService.getNote(id);
+      setNote(note.text);
+    }
+    if (id) getNote();
+  }, [id]);
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const user = await notesService.addNotes({ text: note });
-      setNote(user);
-      navigate("/");
+      if (id) {
+        const editedNote = await notesService.editNotes(id, { text: note });
+        setNote(editedNote);
+
+        navigate("/");
+        return;
+      } else {
+        const user = await notesService.addNotes({ text: note });
+
+        setNote(user);
+        navigate("/");
+      }
     } catch {
       setError("Note creation failed - Try again");
     }
