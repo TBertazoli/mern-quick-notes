@@ -4,6 +4,7 @@ const User = require("../../models/user");
 module.exports = {
   create,
   show,
+  delete: deleteNote,
 };
 
 async function create(req, res) {
@@ -23,6 +24,15 @@ async function show(req, res) {
     const user = await User.findById(req.user._id);
     const notes = await Notes.find({ user: user });
     res.json(notes);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+}
+
+async function deleteNote(req, res) {
+  try {
+    const deletedNote = await Notes.findByIdAndDelete(req.params.id);
+    res.json(deletedNote);
   } catch (err) {
     res.status(400).json(err);
   }

@@ -10,6 +10,10 @@ export default function Notes() {
     setNotes(notes);
   };
 
+  const onDelete = () => {
+    populateNotes();
+  };
+
   useEffect(() => {
     populateNotes();
   }, []);
@@ -29,7 +33,7 @@ export default function Notes() {
             }}
           >
             {notes.map((note, _id) => (
-              <NotesCard note={note} key={_id} />
+              <NotesCard note={note} key={_id} onDelete={onDelete} />
             ))}
           </div>
         </>
